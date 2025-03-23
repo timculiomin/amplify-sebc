@@ -11,14 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/amplify-angular-template",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            },
             "polyfills": [
               "zone.js"
             ],
