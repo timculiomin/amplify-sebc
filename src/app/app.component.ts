@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, effect, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TodosComponent } from './todos/todos.component';
 import { Amplify } from 'aws-amplify';
@@ -7,13 +7,14 @@ import { AmplifyAuthenticatorModule, AuthenticatorService } from '@aws-amplify/u
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileDisplayComponent } from './file-display/file-display.component';
 import { AuthTokens, AuthSession, AuthUser, fetchAuthSession } from 'aws-amplify/auth';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  imports: [RouterOutlet, TodosComponent, AmplifyAuthenticatorModule, FileUploadComponent, FileDisplayComponent],
+  styleUrls: ['./app.component.css'],
+  imports: [CommonModule, RouterOutlet, TodosComponent, AmplifyAuthenticatorModule, FileUploadComponent, FileDisplayComponent],
 })
 export class AppComponent implements OnInit {
   title = 'amplify-angular-template';
@@ -29,8 +30,8 @@ export class AppComponent implements OnInit {
       const rawGroups = session.tokens?.accessToken.payload?.['cognito:groups'];
       const groups = Array.isArray(rawGroups) ? rawGroups as string[] : [];
       this.isUploaderUser.set(groups.includes('Uploader'));
-      console.log('isUploaderUser', this.isUploaderUser());
       this.cdr.detectChanges();
+      console.log('User is in "Uploader" group:', this.isUploaderUser());
     } catch (err) {
       console.error('Error getting user session:', err);
     }
