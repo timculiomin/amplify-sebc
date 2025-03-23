@@ -1,8 +1,13 @@
 import { defineStorage } from '@aws-amplify/backend';
 export const firstBucket = defineStorage({
     name: 'firstBucket',
-    isDefault: true, // identify your default storage bucket (required)
-  });
+    isDefault: true,
+    access: (allow) => ({
+      'picture-submissions/*': [
+        allow.entity('identity').to(['read', 'write', 'delete'])
+      ]
+    })
+  });  
   
   export const secondBucket = defineStorage({
     name: 'secondBucket',
@@ -11,4 +16,4 @@ export const firstBucket = defineStorage({
         allow.entity('identity').to(['read', 'write', 'delete'])
       ]
     })
-  })
+  }) 
