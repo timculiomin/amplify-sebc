@@ -7,7 +7,10 @@
     <h1>Hello {{user?.signInDetails?.loginId}}'s todos</h1>
       <app-todos></app-todos>
       <button (click)="signOut()">Sign Out</button>
-      <app-file-upload></app-file-upload>
+      <button (click)="test(user)">test</button>
+      <ng-container *ngIf="isUploaderUser()">
+        <app-file-upload></app-file-upload>
+      </ng-container>
       <app-file-display></app-file-display>
     </ng-template>
   </amplify-authenticator>
