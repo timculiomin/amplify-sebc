@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TodosComponent } from './todos/todos.component';
 import { Amplify } from 'aws-amplify';
@@ -19,8 +19,9 @@ export class AppComponent implements OnInit {
   title = 'amplify-angular-template';
   isUploaderUser = signal(false);
 
-  constructor(public authenticator: AuthenticatorService) {
-  }
+  constructor(
+    public authenticator: AuthenticatorService,
+    private cdr: ChangeDetectorRef) {}
 
   async ngOnInit() {
     try {
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
       const groups = Array.isArray(rawGroups) ? rawGroups as string[] : [];
       this.isUploaderUser.set(groups.includes('Uploader'));
       console.log('isUploaderUser', this.isUploaderUser());
+      this.cdr.detectChanges();
     } catch (err) {
       console.error('Error getting user session:', err);
     }
