@@ -1,65 +1,57 @@
-body {
-    margin: 0;
-    background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
-    display: flex;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    height: 100vh;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: border-color 0.25s;
-    color: white;
-  }
-  button:hover {
-    border-color: #646cff;
-  }
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-  
-  ul {
-    padding-inline-start: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    margin: 8px 0;
-    border: 1px solid black;
-    gap: 1px;
-    background-color: black;
-    border-radius: 8px;
-    overflow: auto;
-  }
-  
-  li {
-    background-color: white;
-    padding: 8px;
-  }
-  
-  li:hover {
-    background: #dadbf9;
-  }
-  
-  a {
-    font-weight: 800;
-    text-decoration: none;
-  }
+:root{
+  --dark-navy: #1F2937;
+  --light-navy: #2B3544;
+  --gold: #E0D54D;
+  --navy-transparent: rgb(31, 41, 55, .83)
+}
+
+@font-face {
+  font-family: Devasia;
+  src: url(assets/fonts/devasia-cufonfonts-webfont/Devasia-Regular.woff);
+}
+
+@font-face {
+  font-family: Forum;
+  src: url(assets/fonts/Forum/Forum-Regular.ttf);
+}
+
+@font-face {
+  font-family: Anton;
+  src: url(assets/fonts/Anton/Anton-Regular.ttf);
+}
+
+@font-face {
+  font-family: Futura;
+  src: url(assets/fonts/futura/futura\ medium\ bt.ttf);
+}
+
+.options-font {
+  font-family: Forum;
+}
+
+.message-font {
+  font-family: Anton;
+}
+
+.info-font {
+  font-family: Futura;
+}
+
+body{
+  margin: 0px;   
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--navy-transparent); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-navy);
+}

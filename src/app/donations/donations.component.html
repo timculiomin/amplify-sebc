@@ -1,0 +1,45 @@
+<div class="donations-container">
+  <app-nav-menu (isActiveChange)="receiveDataFromChild($event)"></app-nav-menu>
+  <div class="donation-content">
+    <div class="title-container">
+      <img src="../../assets/logo.png" alt="logo" />
+      <p><span *ngIf="languageService.isRussian">Пожертвования</span><span *ngIf="!languageService.isRussian">Donations and tithing</span></p>
+    </div>
+    <div class="info-container">
+      <p class="info-text">
+        <span *ngIf="languageService.isRussian">
+          Ваши сердечные пожертвования являются краеугольным камнем нашего служения, позволяя нам распространять любовь, сострадание и надежду в нашем сообществе и за его пределами. Будь то разовые дары или регулярные десятины, ваша щедрость укрепляет нашу способность служить и поддерживать нуждающихся. Мы уверяем вас, что ваши пожертвования обрабатываются надежно.
+        </span>
+        <span *ngIf="!languageService.isRussian">
+          Your heartfelt contributions are the cornerstone of our ministry, enabling us to spread love, compassion, and hope within our community and beyond. Whether through one-time gifts or regular tithes, your generosity strengthens our ability to serve and support those in need. We assure you that your donations are securely processed.
+        </span>
+      </p>
+      <p class="info-text">
+        <span *ngIf="languageService.isRussian">
+          Благодарим вас за вашу непоколебимую поддержку и за то, что вы являетесь неотъемлемой частью нашего духовного пути.
+        </span>
+        <span *ngIf="!languageService.isRussian">
+          Thank you for your unwavering support and for being an integral part of our spiritual journey.
+        </span>
+      </p>
+    </div>
+    <div *ngIf="!hideForm" class="donation-form">
+      <button (click)="openZelleDialog()">
+        <span *ngIf="languageService.isRussian">Перевод через Zelle</span>
+        <span *ngIf="!languageService.isRussian">Zelle Transfer (Preferred)</span>
+      </button>
+      <button (click)="openAFCUDialog()">
+        <span *ngIf="languageService.isRussian">Перевод через America First</span>
+        <span *ngIf="!languageService.isRussian">America First Transfer (Preferred)</span>
+      </button>
+      <a href="https://donate.stripe.com/cN28wzfoObki0dGfYZ" target="_blank">
+        <span *ngIf="languageService.isRussian">Карточкой для церкви</span>
+        <span *ngIf="!languageService.isRussian">Card Donation to Church</span>
+      </a>
+      <a href="https://donate.stripe.com/9AQ28bdgG1JI8Kc9AA" target="_blank">
+        <span *ngIf="languageService.isRussian">Карточкой на кемпинг</span>
+        <span *ngIf="!languageService.isRussian">Card Donation to Camp Ground</span>
+      </a>
+    </div>
+  </div>
+</div>

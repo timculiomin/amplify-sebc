@@ -1,0 +1,28 @@
+<div class="schedule-container">
+  <app-nav-menu (isActiveChange)="receiveDataFromChild($event)"></app-nav-menu>
+
+  <div class="content">
+    <div class="title-container">
+      <img src="../../assets/logo.png" alt="logo" />
+      <h1><span *ngIf="languageService.isRussian">Расписание</span><span *ngIf="!languageService.isRussian">Schedule</span></h1>
+    </div>
+    <div class="info-container" *ngIf="!hideForm">
+      <p class="info-text">
+        <span *ngIf="!languageService.isRussian">
+          Sunday Service: 10am-12pm <br/>
+          Sunday Bible Study: 5pm-7pm<br/>
+          Sunday School: 5pm-7pm<br/>
+          Wednesday Young Adults Group: 7pm-9pm<br/>
+          Friday Service: 7pm-8pm<br/>
+        </span>
+        <span *ngIf="languageService.isRussian">
+          Воскресное богослужение: 10:00-12:00 <br/>
+          Воскресное изучение Библии: 17:00-19:00<br/>
+          Воскресная детская школа: 17:00-19:00<br/>
+          Молодежная группа по средам: 19:00-21:00<br/>
+          Пятничное богослужение: 19:00-20:00<br/>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>

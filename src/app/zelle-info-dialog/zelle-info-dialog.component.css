@@ -1,0 +1,74 @@
+
+.dialog-container {
+    background-color: var(--dark-navy);
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;  
+    max-height: 80vh;
+  }
+  
+  .dialog-content {
+    font-family: Forum;
+  }
+  
+  .dialog-content p,
+  .dialog-content ol,
+  .dialog-content a {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .dialog-content a {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .dialog-actions button {
+    color: white;
+    border: 2px solid white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  
+  .dialog-actions button:hover {
+    background-color: white;
+    color: var(--navy-transparent);
+  }
+  
+  @media  (pointer: coarse) and (hover: none), (max-width: 1090px)  {
+    .dialog-container {
+      padding: 15px;
+
+    }
+  
+    .dialog-content p,
+    .dialog-content ol,
+    .dialog-content a {
+      font-size: 16px;
+    }
+  
+    .dialog-actions {
+      justify-content: center;
+    }
+
+    /* Small phones */
+   @media (max-width: 600px) {
+    .dialog-content p,
+    .dialog-content ol,
+    .dialog-content a {
+      font-size: 14px;
+    }
+  }
+  }
+  

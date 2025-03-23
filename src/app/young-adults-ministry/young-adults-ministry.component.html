@@ -1,0 +1,20 @@
+<div class="young-adults-ministry-container">
+  <app-nav-menu (isActiveChange)="receiveDataFromChild($event)"></app-nav-menu>
+
+  <div class="content">
+    <div class="title-container">
+      <img src="../../assets/logo.png" alt="logo" />
+      <h1><span *ngIf="languageService.isRussian">Служение Молодежи</span><span *ngIf="!languageService.isRussian">Young Adults Ministry</span></h1>
+    </div>
+    <div class="info-container" *ngIf="!hideForm">
+      <p class="info-text">
+        <span *ngIf="languageService.isRussian">
+          Добро пожаловать на страницу служения молодежи. Молодежная группа SEBC охватывает возраст от 16 до 30 лет. Мы собираемся каждую среду в церкви для изучения Библии в 19:00, все желающие могут присоединиться! Мы стремимся к духовному росту и общению. Несколько раз в год мы совершаем поездки с молодежной группой в различные места. Подписывайтесь на нас в <a href="https://www.instagram.com/salt_youthministry/" target="_blank">Instagram</a>.
+        </span>
+        <span *ngIf="!languageService.isRussian">
+          Welcome to the Young Adults Ministry Page. The young adults group (youth group) of SEBC ranges from 16 - 30. We gather every Wednesday at the church for Bible study at 7pm, all are welcome to join! We are dedicated to spiritual growth and fellowship. We take trips with the young adults group a few times a year to various locations. Give us a follow on <a href="https://www.instagram.com/salt_youthministry/" target="_blank">Instagram</a>.
+        </span>
+      </p>
+    </div>
+  </div>
+</div>

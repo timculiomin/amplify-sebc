@@ -1,0 +1,49 @@
+<div class="dialog-container">
+  <h1><span *ngIf="languageService.isRussian">Инструкции по переводу через Zelle</span><span *ngIf="!languageService.isRussian">Zelle Transfer Instructions</span></h1>
+  <div class="dialog-content">
+    <p>
+      <span *ngIf="languageService.isRussian">
+        Чтобы перевести деньги через Zelle на SEBC, используйте эту электронную почту: slavicbaptistchurchofslc&#64;gmail.com, выполните следующие шаги:
+      </span>
+      <span *ngIf="!languageService.isRussian">
+        To transfer money using Zelle to SEBC use this email account: slavicbaptistchurchofslc&#64;gmail.com, follow these steps:
+      </span>
+    </p>
+    <ol>
+      <li>
+        <span *ngIf="languageService.isRussian">Войдите в онлайн-банкинг или мобильное приложение вашего банка.</span>
+        <span *ngIf="!languageService.isRussian">Log in to your bank's online banking or mobile app.</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Найдите и выберите Zelle.</span>
+        <span *ngIf="!languageService.isRussian">Find and select Zelle.</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Добавьте получателя, используя адрес электронной почты: slavicbaptistchurchofslc&#64;gmail.com</span>
+        <span *ngIf="!languageService.isRussian">Add a recipient using the email address: slavicbaptistchurchofslc&#64;gmail.com</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Введите сумму, которую хотите отправить, и завершите транзакцию.</span>
+        <span *ngIf="!languageService.isRussian">Enter the amount you want to send and complete the transaction.</span>
+      </li>
+    </ol>
+    <p>
+      <span *ngIf="languageService.isRussian">Для подробного руководства смотрите видео ниже:</span>
+      <span *ngIf="!languageService.isRussian">For a detailed tutorial, watch the video below:</span>
+    </p>
+    <a href="https://www.youtube.com/watch?v=OTZcPfLlq4w" target="_blank">
+      <span *ngIf="languageService.isRussian">Смотреть руководство</span>
+      <span *ngIf="!languageService.isRussian">Watch Tutorial</span>
+    </a>
+    <p>
+      <span *ngIf="languageService.isRussian">*Обратите внимание, что этот вариант не является анонимным, но не взимает комиссию за обработку ваших пожертвований</span>
+      <span *ngIf="!languageService.isRussian">*Note that this option is not anonymous but takes no processing fee from your donations</span>
+    </p>
+  </div>
+  <div class="dialog-actions">
+    <button mat-button (click)="onClose()">
+      <span *ngIf="languageService.isRussian">Закрыть</span>
+      <span *ngIf="!languageService.isRussian">Close</span>
+    </button>
+  </div>
+</div>

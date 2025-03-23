@@ -1,0 +1,69 @@
+<div class="dialog-container">
+  <h1><span *ngIf="languageService.isRussian">Инструкции по переводу через AFCU</span><span *ngIf="!languageService.isRussian">AFCU Transfer Instructions</span></h1>
+  <div class="dialog-content">
+    <p>
+      <span *ngIf="languageService.isRussian">Чтобы перевести деньги с помощью приложения America First Credit Union, выполните следующие шаги:</span>
+      <span *ngIf="!languageService.isRussian">To transfer money using the America First Credit Union app, follow these steps:</span>
+    </p>
+    <ol>
+      <li>
+        <span *ngIf="languageService.isRussian">Откройте приложение America First Credit Union на вашем телефоне.</span>
+        <span *ngIf="!languageService.isRussian">Open the America First Credit Union app on your phone.</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Войдите в свой аккаунт.</span>
+        <span *ngIf="!languageService.isRussian">Log in to your account.</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Выберите "Transfers & Payments" из нижнего меню.</span>
+        <span *ngIf="!languageService.isRussian">Select "Transfers & Payments" from the bottom menu.</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Выберите "To another AFCU account"</span>
+        <span *ngIf="!languageService.isRussian">Choose "To another AFCU account"</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Выберите, с какого счета вы хотите перевести</span>
+        <span *ngIf="!languageService.isRussian">Choose which account you want to transfer from</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Если вы уже делали пожертвования таким образом, выберите созданный вами никнейм и перейдите к шагу 11</span>
+        <span *ngIf="!languageService.isRussian">If you have donated this way before you will see the nickname you made, choose it and skip to step 11</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Нажмите "Select Destination" и затем "Add New Destination"</span>
+        <span *ngIf="!languageService.isRussian">Click "Select Destination" and then "Add New Destination"</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Введите номер счета: 46162863</span>
+        <span *ngIf="!languageService.isRussian">Enter the account number: 46162863</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Введите эту часть названия бизнеса: Slavic</span>
+        <span *ngIf="!languageService.isRussian">Enter this part of the business name: Slavic</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Введите простое описательное имя</span>
+        <span *ngIf="!languageService.isRussian">Enter a simple descriptive nickname</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Выберите Checking в типе счета</span>
+        <span *ngIf="!languageService.isRussian">Select Checking in the Account Type</span>
+      </li>
+      <li>
+        <span *ngIf="languageService.isRussian">Введите сумму и Slide to Submit</span>
+        <span *ngIf="!languageService.isRussian">Enter the amount and Slide to Submit</span>
+      </li>
+    </ol>
+    <p>
+      <span *ngIf="languageService.isRussian">*Обратите внимание, что этот вариант не является анонимным, но не взимает комиссию за обработку ваших пожертвований</span>
+      <span *ngIf="!languageService.isRussian">*Note that this option is not anonymous but takes no processing fee from your donations</span>
+    </p>
+  </div>
+  <div class="dialog-actions">
+    <button mat-button (click)="onClose()">
+      <span *ngIf="languageService.isRussian">Закрыть</span>
+      <span *ngIf="!languageService.isRussian">Close</span>
+    </button>
+  </div>
+</div>
