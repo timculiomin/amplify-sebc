@@ -25,11 +25,17 @@
     </nav>
   </div>
 
-  <div class="flag-toggle">
-    <button *ngIf="languageService.isRussian" (click)="changeLanguage()">
+  <div class="upper-right-menu">
+    <button *ngIf="!isSignedIn()" (click)="signIn()" class="auth-buttons">
+      {{ languageService.isRussian ? 'Войти' : 'Sign In' }}
+    </button>
+    <button *ngIf="isSignedIn()" (click)="signOut()" class="auth-buttons">
+      {{ languageService.isRussian ? 'Выйти' : 'Sign Out' }}
+    </button>
+    <button *ngIf="languageService.isRussian" (click)="changeLanguage()" class="flag-buttons">
       <img src="../../assets/UsaFlag2.png" alt="American Flag">
     </button>
-    <button *ngIf="!languageService.isRussian" (click)="changeLanguage()">
+    <button *ngIf="!languageService.isRussian" (click)="changeLanguage()" class="flag-buttons">
       <img src="../../assets/RussiaFlag.png" alt="Russian Flag">
     </button>
   </div>

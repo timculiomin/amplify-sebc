@@ -18,21 +18,34 @@
   flex-grow: 1;
 }
 
-.flag-toggle {
+.upper-right-menu {
   position: absolute;
   top: 60px;
   right: 20px;
+  display: flex;
+  align-items: center; /* centers buttons vertically */
 }
 
-.flag-toggle button {
+
+.flag-buttons {
   background: none;
   border: none;
+  padding-top: 10px;
   cursor: pointer;
 }
 
-.flag-toggle img {
+.upper-right-menu img {
   width: 30px;
   height: 20px;
+}
+
+.auth-buttons {
+  color: var(--gold);
+  border: 2px solid var(--dark-navy);
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: var(--dark-navy);
+  cursor: pointer;
 }
 
 @media (pointer: fine) and (hover: hover), (min-width: 1090px) {
@@ -88,7 +101,7 @@
     align-content: center;
   }
 
-  .flag-toggle {
+  .upper-right-menu {
     top: 20px;
   }
 

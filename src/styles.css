@@ -2,7 +2,21 @@
   --dark-navy: #1F2937;
   --light-navy: #2B3544;
   --gold: #E0D54D;
-  --navy-transparent: rgb(31, 41, 55, .83)
+  --navy-transparent: rgb(31, 41, 55, .83);
+  --amplify-colors-teal-10: rgb(31, 41, 55, .83);
+  --amplify-colors-teal-80: #fff;
+  --amplify-colors-teal-90: #E0D54D;
+  --amplify-colors-neutral-10: hsl(210, 50%, 10%);
+  --amplify-colors-neutral-20: hsl(0, 0%, 0%);
+  --amplify-colors-neutral-40: hsl(210, 10%, 40%);
+  --amplify-colors-neutral-80: hsl(210, 5%, 87%);
+  --amplify-colors-neutral-90: hsl(210, 5%, 94%);
+  --amplify-colors-neutral-100: hsl(210, 5%, 98%);
+  --amplify-colors-black: #fff;
+  --amplify-colors-white: #000;
+  --amplify-colors-border-primary: var(--amplify-colors-neutral-40);
+  --amplify-colors-border-secondary: var(--amplify-colors-neutral-20);
+  --amplify-colors-border-tertiary: var(--amplify-colors-neutral-10);
 }
 
 @font-face {
@@ -54,4 +68,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--dark-navy);
+}
+
+[data-amplify-authenticator] {
+  --amplify-components-authenticator-router-border-width: 0;
+  --amplify-components-button-link-color: var(--gold);
+
+  --amplify-colors-font-primary: white;
 }

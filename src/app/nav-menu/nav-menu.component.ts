@@ -9,6 +9,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { LanguageService } from '../language.service';
+import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthenticatorService } from '@aws-amplify/ui-angular';
 
 @Component({
   selector: 'app-nav-menu',
@@ -28,7 +31,11 @@ export class NavMenuComponent {
   menuOpen = false;
   private breakpointObserver = inject(BreakpointObserver);
 
-  constructor(public languageService: LanguageService){}
+  constructor(
+    public languageService: LanguageService, 
+    private dialog: MatDialog,
+    public authenticator: AuthenticatorService
+  ){}
 
   @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -61,4 +68,17 @@ export class NavMenuComponent {
   changeLanguage(){
     this.languageService.isRussian = !this.languageService.isRussian;
   }
+
+  signIn() {
+    this.dialog.open(AuthDialogComponent);
+  }
+
+  signOut() {
+    this.authenticator.signOut();
+  }
+
+  isSignedIn() {
+    return this.authenticator.authStatus === 'authenticated';
+  }
+  
 }

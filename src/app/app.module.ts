@@ -17,6 +17,8 @@ import { ZelleInfoDialogComponent } from './zelle-info-dialog/zelle-info-dialog.
 import { AFCUInfoDialogComponent } from './afcuinfo-dialog/afcuinfo-dialog.component'
 import { AppRoutingModule } from './app-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AuthDialogComponent } from './auth-dialog/auth-dialog.component';
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     YoungAdultsMinistryComponent,
     ZelleInfoDialogComponent,
     AFCUInfoDialogComponent,
+    AuthDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatListModule,
     MatDialogModule,
+    AmplifyAuthenticatorModule
   ],
   providers: [
     provideAnimationsAsync()
