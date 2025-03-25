@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { ZelleInfoDialogComponent } from './zelle-info-dialog/zelle-info-dialog.component';
 import { AFCUInfoDialogComponent } from './afcuinfo-dialog/afcuinfo-dialog.component'
 import { AppRoutingModule } from './app-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
   ],
   providers: [
     provideAnimationsAsync()

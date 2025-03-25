@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'young-adults-ministry',
     component: YoungAdultsMinistryComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

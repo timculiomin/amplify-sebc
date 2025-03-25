@@ -16,6 +16,15 @@ import { LanguageService } from '../language.service';
   styleUrl: './nav-menu.component.css',
 })
 export class NavMenuComponent {
+  public navItems = [
+    { link: '/home', labelEn: 'Home', labelRu: 'Главная' },
+    { link: '#about-section', labelEn: 'About', labelRu: 'О нас' },
+    { link: '/contact', labelEn: 'Contact', labelRu: 'Контакты' },
+    { link: 'schedule', labelEn: 'Schedule', labelRu: 'Расписание' },
+    { link: '/donate', labelEn: 'Donations', labelRu: 'Пожертвования' },
+    { link: '/young-adults-ministry', labelEn: 'Young Adults Ministry', labelRu: 'Молодежное служение' }
+  ];
+  
   menuOpen = false;
   private breakpointObserver = inject(BreakpointObserver);
 

@@ -32,7 +32,7 @@
     <div class="info-container" *ngIf="!menuOpen">
       <p class="info-text">
         <span *ngIf="languageService.isRussian">
-          Мы - славянская община преданных христиан, проживающих в прекрасном штате Юта. Мы являемся частью более широкого братства славянских церквей, 
+          Мы - славянская община преданных христиан, проживающих в прекрасном штате Юта. Мы являемся частью более широкого братства церквей, 
           известных как МСЦ ЕХБ! Хотя большинство наших проповедей и богослужений проводятся на русском языке, мы предлагаем перевод для тех, кто в нем нуждается. 
           Иногда у нас также бывают проповеди и песни на английском языке. Приглашаем Вас по воскресеньям и пятницам на наши богослужение 
           (подробнее см. на странице расписания).<br>Вы можете найти нас по следующему адресу: 2065 E 6200 S, Holladay, UT 84121
@@ -43,19 +43,9 @@
       </p>
     </div>
   </div>
-  <button *ngIf="!menuOpen" id="mobile-menu-btn" mat-button mat-flat-button (click)="toggleMenu()">
-    <i class="material-icons md-48">menu</i>
-  </button>
-  <div *ngIf="menuOpen" class="mobile-menu">
-    <nav class="nav-menu-mobile">
-      <a href="#about-section" class="nav-item options-font"><span *ngIf="languageService.isRussian">О нас</span><span *ngIf="!languageService.isRussian">About</span></a>
-      <a href="/contact" class="nav-item options-font"><span *ngIf="languageService.isRussian">Контакт</span><span *ngIf="!languageService.isRussian">Contact</span></a>
-      <a href="/schedule" class="nav-item options-font"><span *ngIf="languageService.isRussian">Расписание</span><span *ngIf="!languageService.isRussian">Schedule</span></a>
-      <a href="/donate" class="nav-item options-font"><span *ngIf="languageService.isRussian">Пожертвования</span><span *ngIf="!languageService.isRussian">Donations</span></a>
-      <a href="/young-adults-ministry" class="nav-item options-font"><span *ngIf="languageService.isRussian">Молодежное служение</span><span *ngIf="!languageService.isRussian">Young Adults Ministry</span></a>
-    </nav>
-  </div>
-  <div class="flag-toggle">
+  <app-nav-menu 
+  *ngIf="isHandset$ | async" (isActiveChange)="receiveDataFromChild($event)"></app-nav-menu>
+  <div *ngIf="!(isHandset$ | async)" class="flag-toggle">
     <button *ngIf="languageService.isRussian" (click)="changeLanguage()">
       <img src="../../assets/UsaFlag2.png" alt="American Flag">
     </button>

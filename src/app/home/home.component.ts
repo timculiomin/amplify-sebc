@@ -1,5 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { LanguageService } from '../language.service';
+import { map, Observable, shareReplay } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +10,7 @@ import { LanguageService } from '../language.service';
 })
 export class HomeComponent {
   menuOpen = false;
+  private breakpointObserver = inject(BreakpointObserver);
 
   constructor(public languageService: LanguageService){}
 
@@ -40,6 +43,16 @@ export class HomeComponent {
 
   changeLanguage(){
     this.languageService.isRussian = !this.languageService.isRussian;
-    console.log(this.languageService.isRussian)
   }
+
+  receiveDataFromChild(isActive: boolean) {
+    this.menuOpen = isActive;
+  }
+
+  isHandset$: Observable<boolean> = this.breakpointObserver
+      .observe(Breakpoints.Handset)
+      .pipe(
+        map((result) => result.matches),
+        shareReplay()
+      );
 }
