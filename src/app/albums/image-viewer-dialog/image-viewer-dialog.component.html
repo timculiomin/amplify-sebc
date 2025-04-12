@@ -1,0 +1,26 @@
+<div
+  class="overlay"
+  (click)="close()"
+  (touchstart)="onTouchStart($event)"
+  (touchend)="onTouchEnd($event)"
+>
+  <button class="nav-button left" (click)="prevImage(); $event.stopPropagation()" [disabled]="currentIndex === 0">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+
+  <div class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="top-bar">
+      <button class="icon-button download" (click)="downloadImage()">
+        <mat-icon>download</mat-icon>
+      </button>
+      <button class="icon-button download" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <img [src]="data.images[currentIndex].url" class="image-display" />
+  </div>
+
+  <button class="nav-button right" (click)="nextImage(); $event.stopPropagation()" [disabled]="currentIndex === data.images.length - 1">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>

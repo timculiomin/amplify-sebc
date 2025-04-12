@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { DonationsComponent } from './donations/donations.component';
 import { YoungAdultsMinistryComponent } from './young-adults-ministry/young-adults-ministry.component';
 import { AuthGuard } from './auth.guard';
+import { AlbumsComponent } from './albums/albums.component';
+import { AlbumDeatailComponent } from './albums/album-deatail/album-deatail.component';
 
 
 const routes: Routes = [
@@ -13,12 +15,15 @@ const routes: Routes = [
   {path: 'schedule', component: ScheduleComponent},
   {path: 'home', component: HomeComponent},
   {path: 'donate', component: DonationsComponent},
+  {path: 'photos', component: AlbumsComponent},
+  {path: 'photos/:albumName', component: AlbumDeatailComponent},
   {
     path: 'young-adults-ministry',
     component: YoungAdultsMinistryComponent,
     // canActivate: [AuthGuard]
   },
   {path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

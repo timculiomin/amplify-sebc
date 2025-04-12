@@ -1,0 +1,65 @@
+<div class="album-details-container">
+    <app-nav-menu (isActiveChange)="receiveDataFromChild($event)"></app-nav-menu>
+    
+    <div class="menu-buttons">
+        <button (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button *ngIf="userService.isUploaderUser()" (click)="toggleUploadSection()">
+            <mat-icon *ngIf="!showUploadSection">add</mat-icon>
+            <mat-icon *ngIf="showUploadSection">remove</mat-icon>
+        </button>
+    </div>
+    <div *ngIf="showUploadSection && userService.isUploaderUser()" class="upload-section">
+        <input
+          #fileInput
+          type="file"
+          accept="image/*"
+          multiple
+          hidden
+          (change)="onFilesSelected($event)"
+        />
+      
+        <button class="upload-button" (click)="onFileInputClick(fileInput)">
+          {{ languageService.isRussian ? 'Выбрать файлы' : 'Choose Files' }}
+        </button>
+      
+        <ul *ngIf="selectedFiles.length">
+          <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+        </ul>
+      
+        <button
+          class="upload-button"
+          (click)="uploadSelectedFiles()"
+          [disabled]="selectedFiles.length === 0"
+        >
+          {{ languageService.isRussian ? 'Загрузить' : 'Upload' }}
+        </button>
+      </div>
+    <div class="title-container">
+        <img src="../../assets/photosLogo.png" alt="logo" />
+        <h1>
+          {{ albumName }}
+        </h1>
+      </div>
+
+      <div class="no-images-container" *ngIf="imageItems.length === 0 && !hideForm">
+        <p class="no-images-text">
+          <span *ngIf="languageService.isRussian">Нет изображений в альбоме</span>
+          <span *ngIf="!languageService.isRussian">No images in the album</span>
+        </p>
+      </div>
+      <div class="image-grid" *ngIf="!hideForm">
+        <div class="image-wrapper" *ngFor="let item of imageItems; let i = index">
+          <img [src]="item.url" class="album-image" (click)="openImage(i)"/>
+          <button
+            *ngIf="userService.isUploaderUser()"
+            class="delete-image-button"
+            (click)="deleteImage(item.path)"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+  </div>
+  

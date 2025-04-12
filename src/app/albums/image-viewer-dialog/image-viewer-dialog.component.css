@@ -1,0 +1,77 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dialog-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+  
+  .image-display {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+  
+  .top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+  
+  .icon-button.download {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .icon-button.download mat-icon {
+    font-size: 28px;
+    color: white;
+  }
+
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    height: 40px;
+    width: 40px;
+  }
+  
+  .nav-button.left {
+    left: 10px;
+  }
+  
+  .nav-button.right {
+    right: 10px;
+  }
+  
+  .nav-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  .nav-button mat-icon {
+    font-size: 30px;
+    margin-right: 10px;
+  }
+  

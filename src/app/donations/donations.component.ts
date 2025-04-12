@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { ZelleInfoDialogComponent } from '../zelle-info-dialog/zelle-info-dialog.component';
 import { AFCUInfoDialogComponent } from '../afcuinfo-dialog/afcuinfo-dialog.component';
-import { LanguageService } from '../language.service';
+import { LanguageService } from '../shared/language.service';
 
 @Component({
   selector: 'app-donations',

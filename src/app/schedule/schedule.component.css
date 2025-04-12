@@ -3,7 +3,9 @@
   color: #fff;
   background: url("../../assets/background4.png") no-repeat center center fixed;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 .title-container {
@@ -55,6 +57,22 @@
   padding: 0 80px;
 }
 
+.calendar-wrapper {
+  display: flex;
+  justify-content: start;
+  margin-top: 33vh;
+  width: 50%;
+  height: 55vh;
+  margin-left: 3%;
+}
+
+iframe {
+  border: solid 1px #777;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
 @media (pointer: coarse) and (hover: none), (max-width: 1090px) {
   .info-container {
     top: 40%;
@@ -86,6 +104,27 @@
     font-size: 17px;
   }
 
+  .scrollable-content {
+    position: relative;
+    overflow-y: auto;
+    max-height: 100vh;
+    padding-bottom: 100vh; /* if needed */
+  }
+
+  .calendar-wrapper {
+    width: 90%;
+    height: auto;
+    position: absolute;
+    top: 40%;
+    margin-left: 5%;
+    padding-bottom: 40%;
+  }
+
+  .calendar-wrapper iframe {
+    width: 100%;
+    height: 500px;
+  }
+
   @media (orientation: landscape) {
     .info-container {
       flex-direction: column;
@@ -94,7 +133,6 @@
       left: 5%;
       padding: 10px;
       height: auto;
-      height: 100px;
     }
 
     .info-text {
@@ -120,6 +158,10 @@
       margin-top: 0;
       font-size: 26px;
       margin-right: 20%;
+    }
+
+    .calendar-wrapper {
+      top: 65%;
     }
   }
 

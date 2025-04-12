@@ -1,0 +1,42 @@
+<div class="album-container">
+    <app-nav-menu (isActiveChange)="receiveDataFromChild($event)"></app-nav-menu>
+    
+    <div class="content">
+      <div class="title-container">
+        <img src="../../assets/photosLogo.png" alt="logo" />
+        <h1><span *ngIf="languageService.isRussian">Альбомы</span><span *ngIf="!languageService.isRussian">Albums</span></h1>
+      </div>
+      <div class="album-list" *ngIf="!hideForm">
+        <div class="album" *ngFor="let album of albums" (click)="goToAlbum(album)">
+          <p class="album-text">{{ album }}</p>
+          <button *ngIf="userService.isUploaderUser()" class="icon-button" (click)="deleteAlbum(album); $event.stopPropagation()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div class="album" *ngIf="albums.length === 0">
+          <p class="album-text">
+            <span *ngIf="languageService.isRussian">Альбомы еще не добавлены</span>
+            <span *ngIf="!languageService.isRussian">No Albums Added Yet</span>
+          </p>          
+        </div>
+        <form *ngIf="userService.isUploaderUser()" class="album create-album-form" (ngSubmit)="createAlbum()" #albumForm="ngForm">
+          <input
+            type="text"
+            name="albumName"
+            [(ngModel)]="albumName"
+            required
+            placeholder="Enter album name"
+            class="album-input"
+          />
+          <button
+            type="submit"
+            class="add-album-button"
+            [disabled]="albumForm.invalid"
+          >
+            Create Album
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

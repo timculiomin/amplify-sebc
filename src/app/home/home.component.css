@@ -122,21 +122,33 @@ a {
   cursor: pointer;
 }
 
-.flag-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.flag-toggle button {
+.flag-buttons {
   background: none;
   border: none;
+  padding-top: 10px;
   cursor: pointer;
 }
 
-.flag-toggle img {
+.upper-right-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center; 
+}
+
+.upper-right-menu img {
   width: 30px;
   height: 20px;
+}
+
+.auth-buttons {
+  color: var(--gold);
+  border: 2px solid var(--dark-navy);
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: var(--dark-navy);
+  cursor: pointer;
 }
 
 /* computer only */
@@ -171,7 +183,7 @@ a {
   .logo {
     width: 160px;
     position: absolute;
-    top: 15px;
+    top: 45px;
     left: 50%;
     transform: translateX(-50%);
   }

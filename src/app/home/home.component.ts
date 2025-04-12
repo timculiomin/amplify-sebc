@@ -1,7 +1,10 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { LanguageService } from '../language.service';
+import { LanguageService } from '../shared/language.service';
 import { map, Observable, shareReplay } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { AuthenticatorService } from '@aws-amplify/ui-angular';
+import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +15,10 @@ export class HomeComponent {
   menuOpen = false;
   private breakpointObserver = inject(BreakpointObserver);
 
-  constructor(public languageService: LanguageService){}
+  constructor(
+    public languageService: LanguageService,
+    private dialog: MatDialog,
+    public authenticator: AuthenticatorService){}
 
   toggleMenu(){
     this.menuOpen = !this.menuOpen;
@@ -55,4 +61,15 @@ export class HomeComponent {
         map((result) => result.matches),
         shareReplay()
       );
+      signIn() {
+          this.dialog.open(AuthDialogComponent);
+        }
+      
+        signOut() {
+          this.authenticator.signOut();
+        }
+      
+        isSignedIn() {
+          return this.authenticator.authStatus === 'authenticated';
+        }
 }

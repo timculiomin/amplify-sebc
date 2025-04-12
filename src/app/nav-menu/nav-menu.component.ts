@@ -8,7 +8,7 @@ import {
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { LanguageService } from '../language.service';
+import { LanguageService } from '../shared/language.service';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticatorService } from '@aws-amplify/ui-angular';
@@ -25,6 +25,7 @@ export class NavMenuComponent {
     { link: '/contact', labelEn: 'Contact', labelRu: 'Контакты' },
     { link: 'schedule', labelEn: 'Schedule', labelRu: 'Расписание' },
     { link: '/donate', labelEn: 'Donations', labelRu: 'Пожертвования' },
+    { link: '/photos', labelEn: 'Photos', labelRu: 'Фото' },
     { link: '/young-adults-ministry', labelEn: 'Young Adults Ministry', labelRu: 'Молодежное служение' }
   ];
   

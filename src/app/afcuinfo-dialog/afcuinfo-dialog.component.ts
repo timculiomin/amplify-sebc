@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { LanguageService } from '../language.service';
+import { LanguageService } from '../shared/language.service';
 
 @Component({
   selector: 'app-afcuinfo-dialog',

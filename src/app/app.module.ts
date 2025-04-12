@@ -19,6 +19,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthDialogComponent } from './auth-dialog/auth-dialog.component';
 import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
+import { AlbumsComponent } from './albums/albums.component';
+import { FormsModule } from '@angular/forms';
+import { AlbumDeatailComponent } from './albums/album-deatail/album-deatail.component';
+import { ImageViewerDialogComponent } from './albums/image-viewer-dialog/image-viewer-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
     YoungAdultsMinistryComponent,
     ZelleInfoDialogComponent,
     AFCUInfoDialogComponent,
-    AuthDialogComponent
+    AuthDialogComponent,
+    AlbumsComponent,
+    AlbumDeatailComponent,
+    ImageViewerDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,8 @@ import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
     MatIconModule,
     MatListModule,
     MatDialogModule,
-    AmplifyAuthenticatorModule
+    AmplifyAuthenticatorModule,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync()

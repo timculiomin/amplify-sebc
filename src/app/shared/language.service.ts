@@ -15,7 +15,6 @@ export class LanguageService {
   }
 
   constructor() {
-    // Initialize the language setting if not already set
     if (localStorage.getItem(this.languageKey) === null) {
       localStorage.setItem(this.languageKey, 'false');
     }

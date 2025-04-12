@@ -16,6 +16,7 @@
           <a href="/contact" class="nav-item options-font"><span *ngIf="languageService.isRussian">Контакты</span><span *ngIf="!languageService.isRussian">Contact</span></a>
           <a href="/schedule" class="nav-item options-font"><span *ngIf="languageService.isRussian">Расписание</span><span *ngIf="!languageService.isRussian">Schedule</span></a>
           <a href="/donate" class="nav-item options-font"><span *ngIf="languageService.isRussian">Пожертвования</span><span *ngIf="!languageService.isRussian">Donations</span></a>
+          <a href="/photos" class="nav-item options-font"><span *ngIf="languageService.isRussian">Фото</span><span *ngIf="!languageService.isRussian">Photos</span></a>
           <a href="/young-adults-ministry" class="nav-item options-font"><span *ngIf="languageService.isRussian">Молодежное служение</span><span *ngIf="!languageService.isRussian">Young Adults Ministry</span></a>
         </nav>
       </div>
@@ -26,14 +27,15 @@
       <mat-icon class="scroll-to-top" (click)="scrollToTop()">arrow_upward</mat-icon>
     </div>
     <div class="title-container">
-      <img src="../../assets/logo.png" alt="logo" />
+      <img src="../../assets/aboutUsLogo.png" alt="logo" />
       <h1><span *ngIf="languageService.isRussian">О нас</span><span *ngIf="!languageService.isRussian">About Us</span></h1>
     </div>
     <div class="info-container" *ngIf="!menuOpen">
       <p class="info-text">
         <span *ngIf="languageService.isRussian">
-          Мы - славянская община преданных христиан, проживающих в прекрасном штате Юта. Мы являемся частью более широкого братства церквей, 
-          известных как МСЦ ЕХБ! Хотя большинство наших проповедей и богослужений проводятся на русском языке, мы предлагаем перевод для тех, кто в нем нуждается. 
+          Мы славянская община евангельских Христиан-Баптистов проживающих прекрасном штате Юта. 
+          Наша община является частью международного союза церквей евангельских христиан-Баптистов! 
+          Хотя большинство наших проповедей и богослужений проводятся на русском языке, мы предлагаем перевод для тех, кто в нем нуждается. 
           Иногда у нас также бывают проповеди и песни на английском языке. Приглашаем Вас по воскресеньям и пятницам на наши богослужение 
           (подробнее см. на странице расписания).<br>Вы можете найти нас по следующему адресу: 2065 E 6200 S, Holladay, UT 84121
         </span>
@@ -45,11 +47,17 @@
   </div>
   <app-nav-menu 
   *ngIf="isHandset$ | async" (isActiveChange)="receiveDataFromChild($event)"></app-nav-menu>
-  <div *ngIf="!(isHandset$ | async)" class="flag-toggle">
-    <button *ngIf="languageService.isRussian" (click)="changeLanguage()">
+  <div class="upper-right-menu">
+    <button *ngIf="!isSignedIn()" (click)="signIn()" class="auth-buttons">
+      {{ languageService.isRussian ? 'Войти' : 'Sign In' }}
+    </button>
+    <button *ngIf="isSignedIn()" (click)="signOut()" class="auth-buttons">
+      {{ languageService.isRussian ? 'Выйти' : 'Sign Out' }}
+    </button>
+    <button *ngIf="languageService.isRussian" (click)="changeLanguage()" class="flag-buttons">
       <img src="../../assets/UsaFlag2.png" alt="American Flag">
     </button>
-    <button *ngIf="!languageService.isRussian" (click)="changeLanguage()">
+    <button *ngIf="!languageService.isRussian" (click)="changeLanguage()" class="flag-buttons">
       <img src="../../assets/RussiaFlag.png" alt="Russian Flag">
     </button>
   </div>

@@ -1,0 +1,193 @@
+.album-details-container {
+    font-family: "Arial", sans-serif;
+    color: #fff;
+    background: url(../../../assets/about-background.png) no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  .menu-buttons {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  .menu-buttons button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--light-navy);
+    color: var(--gold);
+  }
+  
+  .menu-buttons mat-icon {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .album-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+  
+  .album-image:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  
+  .upload-section {
+    padding: 20px;
+    background-color: var(--navy-transparent);
+    border-radius: 10px;
+    margin: 20px;
+    color: white;
+  }
+  
+  .upload-button {
+    margin-right: 15px;
+    background-color: var(--dark-navy);
+    color: var(--gold);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .upload-button:disabled {
+    background-color: #888;
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .upload-section ul {
+    margin-top: 10px;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .upload-section li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .title-container {
+    background-color: var(--navy-transparent);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 0 15px 15px 0;
+    padding: 20px 40px;
+    width: fit-content;
+    margin: 20px 0;
+  }
+  
+  .title-container img {
+    height: 100px;
+    margin-right: 20px;
+  }
+  
+  .title-container h1 {
+    color: white;
+    font-size: 40px;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .delete-image-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    padding: 4px;
+    color: red;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .delete-image-button mat-icon {
+    font-size: 18px;
+    color: red;
+  }
+  
+  .no-images-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .no-images-text {
+    text-align: center;
+    color: var(--dark-navy);
+    font-size: 20px;
+    width: 100%;
+    padding: 40px 0;
+  }
+  
+
+  /* computer view */
+  @media (min-width: 768px) {
+    .image-grid {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+  }
+
+  /* phone view */
+  @media (max-width: 767px) {
+    .menu-buttons mat-icon {
+      font-size: 20px;
+      margin: 0;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .menu-buttons button {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+    }
+
+    .title-container {
+      flex-direction: column;
+      align-items: center;
+      border-radius: 0;
+      width: 100%;
+      padding: 15px;
+      text-align: center;
+    }
+  
+    .title-container img {
+      height: 80px;
+      margin: 0 0 10px 0;
+    }
+  }
+  
