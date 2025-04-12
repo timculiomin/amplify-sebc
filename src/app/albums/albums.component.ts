@@ -59,6 +59,15 @@ export class AlbumsComponent implements OnInit {
   }
 
   async deleteAlbum(albumName: string) {
+    const confirmed = confirm(
+      this.languageService.isRussian
+        ? `Вы уверены, что хотите удалить альбом "${albumName}"?`
+        : `Are you sure you want to delete the album "${albumName}"?`
+    );
+  
+    if (!confirmed) return;
+
+    
     const albumPath = `picture-submissions/${albumName}/`;
     const result = await list({ path: albumPath });
     const files = result.items ?? [];

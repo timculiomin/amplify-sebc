@@ -47,8 +47,8 @@
   display: flex;
   flex-direction: row;
   position: absolute;
-  top: 50%;
-  height: 250px;
+  top: 45%;
+  height: auto;
   align-items: center;
   justify-items: space-evenly;
   border-radius: 15px 0px 0px 15px;
@@ -108,7 +108,7 @@ iframe {
     position: relative;
     overflow-y: auto;
     max-height: 100vh;
-    padding-bottom: 100vh; /* if needed */
+    padding-bottom: 100vh;
   }
 
   .calendar-wrapper {
@@ -135,11 +135,6 @@ iframe {
       height: auto;
     }
 
-    .info-text {
-      font-size: 12px;
-      text-align: center;
-    }
-
     .title-container {
       flex-direction: row;
       top: 20%;
@@ -161,14 +156,22 @@ iframe {
     }
 
     .calendar-wrapper {
-      top: 65%;
+      top: 130%;
     }
   }
 
   /* Small phones */
   @media (max-width: 600px) {
+    .info-text {
+      font-size: 16px;
+    }
+
     .title-container h1 {
       font-size: 30px; 
+    }
+
+    .calendar-wrapper {
+      top: 75%;
     }
   }
 }

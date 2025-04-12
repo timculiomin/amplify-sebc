@@ -21,9 +21,10 @@
     "@angular/router": "^17.3.0",
     "@aws-amplify/storage": "^6.7.16",
     "@aws-amplify/ui-angular": "^5.0.40",
-    "@parcel/watcher": "^2.5.1",
     "@mui/icons-material": "^5.15.14",
+    "@parcel/watcher": "^2.5.1",
     "aws-amplify": "^6.6.6",
+    "heic2any": "^0.0.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

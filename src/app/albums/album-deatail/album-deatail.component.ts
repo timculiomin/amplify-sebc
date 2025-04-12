@@ -5,6 +5,7 @@ import { UserService } from '../../shared/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageViewerDialogComponent } from '../image-viewer-dialog/image-viewer-dialog.component';
+import heic2any from 'heic2any';
 
 @Component({
   selector: 'app-album-deatail',
@@ -63,11 +64,30 @@ export class AlbumDeatailComponent implements OnInit {
     input.click();
   }
   
-  onFilesSelected(event: Event) {
+  async onFilesSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files) return;
-    this.selectedFiles = Array.from(input.files);
-  }
+  
+    const files: File[] = [];
+  
+    for (const file of Array.from(input.files)) {
+      if (file.type === 'image/heic' || file.name.toLowerCase().endsWith('.heic')) {
+        try {
+          const convertedBlob = await heic2any({ blob: file, toType: 'image/jpeg' }) as Blob;
+          const convertedFile = new File([convertedBlob], file.name.replace(/\.heic$/i, '.jpg'), {
+            type: 'image/jpeg',
+          });
+          files.push(convertedFile);
+        } catch (err) {
+          console.error('HEIC conversion failed', err);
+        }
+      } else {
+        files.push(file);
+      }
+    }
+  
+    this.selectedFiles = files;
+  }  
   
   async uploadSelectedFiles() {
     if (!this.albumName || this.selectedFiles.length === 0) return;
