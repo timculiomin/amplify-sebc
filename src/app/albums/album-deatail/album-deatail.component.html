@@ -35,6 +35,14 @@
         >
           {{ languageService.isRussian ? 'Загрузить' : 'Upload' }}
         </button>
+        <div *ngIf="uploading" style="margin-top: 10px;">
+          <p>{{ languageService.isRussian ? 'Загрузка...' : 'Uploading...' }} {{ uploadProgress }}%</p>
+          <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+        </div>  
+        <div *ngIf="preparing" style="margin-top: 10px;">
+          <p>{{ languageService.isRussian ? 'Подготовка файлов...' : 'Preparing files...' }} {{ prepareProgress }}%</p>
+          <mat-progress-bar mode="determinate" [value]="prepareProgress"></mat-progress-bar>
+        </div>              
       </div>
     <div class="title-container">
         <img src="../../assets/photosLogo.png" alt="logo" />

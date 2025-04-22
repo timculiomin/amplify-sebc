@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageViewerDialogComponent } from '../image-viewer-dialog/image-viewer-dialog.component';
 import heic2any from 'heic2any';
+import imageCompression from 'browser-image-compression';
 
 @Component({
   selector: 'app-album-deatail',
@@ -18,14 +19,18 @@ export class AlbumDeatailComponent implements OnInit {
   imageItems: ImageItem[] = [];
   selectedFiles: File[] = [];
   showUploadSection = false;
+  uploading = false;
+  uploadProgress = 0;
+  preparing = false;
+  prepareProgress = 0;
 
   constructor(
-    public languageService: LanguageService, 
+    public languageService: LanguageService,
     public userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     this.albumName = this.route.snapshot.paramMap.get('albumName') || '';
@@ -40,12 +45,17 @@ export class AlbumDeatailComponent implements OnInit {
 
     for (const file of files) {
       if (!file.path.endsWith('.placeholder')) {
-        const urlResult = await getUrl({ path: file.path });
-        this.imageItems.push({ url: urlResult.url.toString(), path: file.path });
+        if (!file.path.includes('/thumb_')) continue;
+
+        const originalPath = file.path.replace('thumb_', '');
+        const thumbUrl = (await getUrl({ path: file.path })).url.toString();
+
+        this.imageItems.push({ url: thumbUrl, path: originalPath });
+
       }
     }
 
-  }  
+  }
 
   receiveDataFromChild(isActive: boolean) {
     this.hideForm = isActive;
@@ -63,58 +73,118 @@ export class AlbumDeatailComponent implements OnInit {
   onFileInputClick(input: HTMLInputElement) {
     input.click();
   }
-  
+
   async onFilesSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files) return;
-  
+
+    this.preparing = true;
+    this.prepareProgress = 0;
+
     const files: File[] = [];
-  
-    for (const file of Array.from(input.files)) {
+    const inputFiles = Array.from(input.files);
+
+    for (let i = 0; i < inputFiles.length; i++) {
+      let file = inputFiles[i];
+      let processedFile = file;
+
       if (file.type === 'image/heic' || file.name.toLowerCase().endsWith('.heic')) {
         try {
           const convertedBlob = await heic2any({ blob: file, toType: 'image/jpeg' }) as Blob;
-          const convertedFile = new File([convertedBlob], file.name.replace(/\.heic$/i, '.jpg'), {
+          processedFile = new File([convertedBlob], file.name.replace(/\.heic$/i, '.jpg'), {
             type: 'image/jpeg',
           });
-          files.push(convertedFile);
         } catch (err) {
           console.error('HEIC conversion failed', err);
+          continue;
         }
-      } else {
-        files.push(file);
       }
-    }
-  
-    this.selectedFiles = files;
-  }  
-  
-  async uploadSelectedFiles() {
-    if (!this.albumName || this.selectedFiles.length === 0) return;
-  
-    for (const file of this.selectedFiles) {
-      const path = `picture-submissions/${this.albumName}/${file.name}`;
-      await uploadData({
-        path,
-        data: file,
-        options: {
-          contentType: file.type,
-        }
+
+      const thumb = await imageCompression(processedFile, {
+        maxWidthOrHeight: 450,
+        useWebWorker: true,
       });
+
+      (processedFile as any).thumbnail = new File([thumb], 'thumb_' + processedFile.name, {
+        type: thumb.type,
+      });
+
+      files.push(processedFile);
+      this.prepareProgress = Math.round(((i + 1) / inputFiles.length) * 100);
+      await new Promise(res => setTimeout(res)); 
     }
-  
-    this.selectedFiles = [];
-    await new Promise((res) => setTimeout(res, 500));
-    await this.loadImages();
+
+    this.selectedFiles = files;
+    await new Promise(res => setTimeout(res, 300)); 
+    this.prepareProgress = 0;
   }
 
+  async uploadSelectedFiles() {
+    if (!this.albumName || this.selectedFiles.length === 0) return;
+
+    this.uploading = true;
+    this.uploadProgress = 0;
+
+    const total = this.selectedFiles.length;
+    let completed = 0;
+
+    const uploadTasks = this.selectedFiles.flatMap(file => {
+      const f = file as any;
+      const originalPath = `picture-submissions/${this.albumName}/${file.name}`;
+      const thumbnailPath = `picture-submissions/${this.albumName}/thumb_${file.name}`;
+
+      const originalUpload = uploadData({
+        path: originalPath,
+        data: file,
+        options: { contentType: file.type }
+      }).result.then(() => {
+        completed++;
+        this.uploadProgress = Math.round((completed / (total * 2)) * 100);
+      });
+
+      const thumbUpload = uploadData({
+        path: thumbnailPath,
+        data: f.thumbnail,
+        options: { contentType: f.thumbnail.type }
+      }).result.then(() => {
+        completed++;
+        this.uploadProgress = Math.round((completed / (total * 2)) * 100);
+      });
+
+      return [originalUpload, thumbUpload];
+    });
+
+    await Promise.all(uploadTasks);
+
+    this.uploading = false;
+    this.uploadProgress = 0;
+    this.selectedFiles = [];
+
+    await this.loadImages();
+
+  }
+
+
+
   async deleteImage(path: string) {
-    await remove({ path });
+    await Promise.all([
+      remove({ path }),
+      remove({ path: path.replace(/([^/]+)$/, 'thumb_$1') })
+    ]);
+
+    this.imageItems = this.imageItems.filter(i => i.path !== path);
+
     this.imageItems = this.imageItems.filter(i => i.path !== path);
   }
 
-  openImage(index: number) {
-    const images = this.imageItems.map(item => ({ url: item.url, key: item.path }));
+  async openImage(index: number) {
+    const images = await Promise.all(
+      this.imageItems.map(async (item) => {
+        const fullUrl = (await getUrl({ path: item.path })).url.toString();
+        return { url: fullUrl, key: item.path };
+      })
+    );
+
     this.dialog.open(ImageViewerDialogComponent, {
       data: { images, index },
       panelClass: 'full-screen-dialog',

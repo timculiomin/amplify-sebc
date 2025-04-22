@@ -12,6 +12,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
 import { ZelleInfoDialogComponent } from './zelle-info-dialog/zelle-info-dialog.component';
 import { AFCUInfoDialogComponent } from './afcuinfo-dialog/afcuinfo-dialog.component'
@@ -52,7 +53,8 @@ import { ImageViewerDialogComponent } from './albums/image-viewer-dialog/image-v
     MatListModule,
     MatDialogModule,
     AmplifyAuthenticatorModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule
   ],
   providers: [
     provideAnimationsAsync()

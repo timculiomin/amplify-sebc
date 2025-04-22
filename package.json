@@ -24,6 +24,7 @@
     "@mui/icons-material": "^5.15.14",
     "@parcel/watcher": "^2.5.1",
     "aws-amplify": "^6.6.6",
+    "browser-image-compression": "^2.0.2",
     "heic2any": "^0.0.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
