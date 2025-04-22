@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
       const groups = Array.isArray(rawGroups) ? rawGroups as string[] : [];
       this.userService.isUploaderUser.set(groups.includes('Uploader') || groups.includes('admin'));
       this.cdr.detectChanges();
-      console.log('User is in "Uploader" group:', this.userService.isUploaderUser());
     } catch (err) {
       console.error('Error getting user session:', err);
     }
