@@ -48,13 +48,13 @@
   cursor: pointer;
 }
 
-@media (pointer: fine) and (hover: hover), (min-width: 1090px) {
+@media (pointer: fine) and (hover: hover) {
   #mobile-menu-btn {
     display: none;
   }
 }
 
-@media  (pointer: coarse) and (hover: none), (max-width: 1090px)  {
+@media  (pointer: coarse) and (hover: none)  {
   .nav-menu{
     display: none;
   }
