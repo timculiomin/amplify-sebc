@@ -47,18 +47,4 @@
   </div>
   <app-nav-menu 
   *ngIf="isHandset$ | async" (isActiveChange)="receiveDataFromChild($event)"></app-nav-menu>
-  <div class="upper-right-menu">
-    <button *ngIf="!isSignedIn()" (click)="signIn()" class="auth-buttons">
-      {{ languageService.isRussian ? 'Войти' : 'Sign In' }}
-    </button>
-    <button *ngIf="isSignedIn()" (click)="signOut()" class="auth-buttons">
-      {{ languageService.isRussian ? 'Выйти' : 'Sign Out' }}
-    </button>
-    <button *ngIf="languageService.isRussian" (click)="changeLanguage()" class="flag-buttons">
-      <img src="../../assets/UsaFlag2.png" alt="American Flag">
-    </button>
-    <button *ngIf="!languageService.isRussian" (click)="changeLanguage()" class="flag-buttons">
-      <img src="../../assets/RussiaFlag.png" alt="Russian Flag">
-    </button>
-  </div>
 </div>

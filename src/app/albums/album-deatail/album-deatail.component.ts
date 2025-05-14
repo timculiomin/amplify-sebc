@@ -117,6 +117,7 @@ export class AlbumDeatailComponent implements OnInit {
     this.selectedFiles = files;
     await new Promise(res => setTimeout(res, 300)); 
     this.prepareProgress = 0;
+    this.preparing = false;
   }
 
   async uploadSelectedFiles() {
